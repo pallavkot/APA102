@@ -23,10 +23,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "stdio.h"
-#include "strings.h"
-
 #define LED_NO 120
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -44,11 +42,7 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-SPI_HandleTypeDef hspi4;
-
-TIM_HandleTypeDef htim1;
-
-UART_HandleTypeDef huart3;
+SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
 
@@ -57,15 +51,327 @@ UART_HandleTypeDef huart3;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_SPI4_Init(void);
-static void MX_TIM1_Init(void);
-static void MX_USART3_UART_Init(void);
+static void MX_SPI1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+#define LED_BUFFER_LENGTH (LED_NO*12)
+const uint8_t leddata[256*4] = { // size = 256 * 3
+0X44 , 0X44 , 0X44 , 0X44 , // 0
+0X44 , 0X44 , 0X44 , 0X47 , // 1
+0X44 , 0X44 , 0X44 , 0X74 , 
+0X44 , 0X44 , 0X44 , 0X77 , 
+0X44 , 0X44 , 0X47 , 0X44 , 
+0X44 , 0X44 , 0X47 , 0X47 , 
+0X44 , 0X44 , 0X47 , 0X74 , 
+0X44 , 0X44 , 0X47 , 0X77 , 
+0X44 , 0X44 , 0X74 , 0X44 , 
+0X44 , 0X44 , 0X74 , 0X47 , 
+0X44 , 0X44 , 0X74 , 0X74 , 
+0X44 , 0X44 , 0X74 , 0X77 , 
+0X44 , 0X44 , 0X77 , 0X44 , 
+0X44 , 0X44 , 0X77 , 0X47 , 
+0X44 , 0X44 , 0X77 , 0X74 , 
+0X44 , 0X44 , 0X77 , 0X77 , 
+0X44 , 0X47 , 0X44 , 0X44 , 
+0X44 , 0X47 , 0X44 , 0X47 , 
+0X44 , 0X47 , 0X44 , 0X74 , 
+0X44 , 0X47 , 0X44 , 0X77 , 
+0X44 , 0X47 , 0X47 , 0X44 , 
+0X44 , 0X47 , 0X47 , 0X47 , 
+0X44 , 0X47 , 0X47 , 0X74 , 
+0X44 , 0X47 , 0X47 , 0X77 , 
+0X44 , 0X47 , 0X74 , 0X44 , 
+0X44 , 0X47 , 0X74 , 0X47 , 
+0X44 , 0X47 , 0X74 , 0X74 , 
+0X44 , 0X47 , 0X74 , 0X77 , 
+0X44 , 0X47 , 0X77 , 0X44 , 
+0X44 , 0X47 , 0X77 , 0X47 , 
+0X44 , 0X47 , 0X77 , 0X74 , 
+0X44 , 0X47 , 0X77 , 0X77 , 
+0X44 , 0X74 , 0X44 , 0X44 , 
+0X44 , 0X74 , 0X44 , 0X47 , 
+0X44 , 0X74 , 0X44 , 0X74 , 
+0X44 , 0X74 , 0X44 , 0X77 , 
+0X44 , 0X74 , 0X47 , 0X44 , 
+0X44 , 0X74 , 0X47 , 0X47 , 
+0X44 , 0X74 , 0X47 , 0X74 , 
+0X44 , 0X74 , 0X47 , 0X77 , 
+0X44 , 0X74 , 0X74 , 0X44 , 
+0X44 , 0X74 , 0X74 , 0X47 , 
+0X44 , 0X74 , 0X74 , 0X74 , 
+0X44 , 0X74 , 0X74 , 0X77 , 
+0X44 , 0X74 , 0X77 , 0X44 , 
+0X44 , 0X74 , 0X77 , 0X47 , 
+0X44 , 0X74 , 0X77 , 0X74 , 
+0X44 , 0X74 , 0X77 , 0X77 , 
+0X44 , 0X77 , 0X44 , 0X44 , 
+0X44 , 0X77 , 0X44 , 0X47 , 
+0X44 , 0X77 , 0X44 , 0X74 , 
+0X44 , 0X77 , 0X44 , 0X77 , 
+0X44 , 0X77 , 0X47 , 0X44 , 
+0X44 , 0X77 , 0X47 , 0X47 , 
+0X44 , 0X77 , 0X47 , 0X74 , 
+0X44 , 0X77 , 0X47 , 0X77 , 
+0X44 , 0X77 , 0X74 , 0X44 , 
+0X44 , 0X77 , 0X74 , 0X47 , 
+0X44 , 0X77 , 0X74 , 0X74 , 
+0X44 , 0X77 , 0X74 , 0X77 , 
+0X44 , 0X77 , 0X77 , 0X44 , 
+0X44 , 0X77 , 0X77 , 0X47 , 
+0X44 , 0X77 , 0X77 , 0X74 , 
+0X44 , 0X77 , 0X77 , 0X77 , 
+0X47 , 0X44 , 0X44 , 0X44 , 
+0X47 , 0X44 , 0X44 , 0X47 , 
+0X47 , 0X44 , 0X44 , 0X74 , 
+0X47 , 0X44 , 0X44 , 0X77 , 
+0X47 , 0X44 , 0X47 , 0X44 , 
+0X47 , 0X44 , 0X47 , 0X47 , 
+0X47 , 0X44 , 0X47 , 0X74 , 
+0X47 , 0X44 , 0X47 , 0X77 , 
+0X47 , 0X44 , 0X74 , 0X44 , 
+0X47 , 0X44 , 0X74 , 0X47 , 
+0X47 , 0X44 , 0X74 , 0X74 , 
+0X47 , 0X44 , 0X74 , 0X77 , 
+0X47 , 0X44 , 0X77 , 0X44 , 
+0X47 , 0X44 , 0X77 , 0X47 , 
+0X47 , 0X44 , 0X77 , 0X74 , 
+0X47 , 0X44 , 0X77 , 0X77 , 
+0X47 , 0X47 , 0X44 , 0X44 , 
+0X47 , 0X47 , 0X44 , 0X47 , 
+0X47 , 0X47 , 0X44 , 0X74 , 
+0X47 , 0X47 , 0X44 , 0X77 , 
+0X47 , 0X47 , 0X47 , 0X44 , 
+0X47 , 0X47 , 0X47 , 0X47 , 
+0X47 , 0X47 , 0X47 , 0X74 , 
+0X47 , 0X47 , 0X47 , 0X77 , 
+0X47 , 0X47 , 0X74 , 0X44 , 
+0X47 , 0X47 , 0X74 , 0X47 , 
+0X47 , 0X47 , 0X74 , 0X74 , 
+0X47 , 0X47 , 0X74 , 0X77 , 
+0X47 , 0X47 , 0X77 , 0X44 , 
+0X47 , 0X47 , 0X77 , 0X47 , 
+0X47 , 0X47 , 0X77 , 0X74 , 
+0X47 , 0X47 , 0X77 , 0X77 , 
+0X47 , 0X74 , 0X44 , 0X44 , 
+0X47 , 0X74 , 0X44 , 0X47 , 
+0X47 , 0X74 , 0X44 , 0X74 , 
+0X47 , 0X74 , 0X44 , 0X77 , 
+0X47 , 0X74 , 0X47 , 0X44 , 
+0X47 , 0X74 , 0X47 , 0X47 , 
+0X47 , 0X74 , 0X47 , 0X74 , 
+0X47 , 0X74 , 0X47 , 0X77 , 
+0X47 , 0X74 , 0X74 , 0X44 , 
+0X47 , 0X74 , 0X74 , 0X47 , 
+0X47 , 0X74 , 0X74 , 0X74 , 
+0X47 , 0X74 , 0X74 , 0X77 , 
+0X47 , 0X74 , 0X77 , 0X44 , 
+0X47 , 0X74 , 0X77 , 0X47 , 
+0X47 , 0X74 , 0X77 , 0X74 , 
+0X47 , 0X74 , 0X77 , 0X77 , 
+0X47 , 0X77 , 0X44 , 0X44 , 
+0X47 , 0X77 , 0X44 , 0X47 , 
+0X47 , 0X77 , 0X44 , 0X74 , 
+0X47 , 0X77 , 0X44 , 0X77 , 
+0X47 , 0X77 , 0X47 , 0X44 , 
+0X47 , 0X77 , 0X47 , 0X47 , 
+0X47 , 0X77 , 0X47 , 0X74 , 
+0X47 , 0X77 , 0X47 , 0X77 , 
+0X47 , 0X77 , 0X74 , 0X44 , 
+0X47 , 0X77 , 0X74 , 0X47 , 
+0X47 , 0X77 , 0X74 , 0X74 , 
+0X47 , 0X77 , 0X74 , 0X77 , 
+0X47 , 0X77 , 0X77 , 0X44 , 
+0X47 , 0X77 , 0X77 , 0X47 , 
+0X47 , 0X77 , 0X77 , 0X74 , 
+0X47 , 0X77 , 0X77 , 0X77 , 
+0X74 , 0X44 , 0X44 , 0X44 , 
+0X74 , 0X44 , 0X44 , 0X47 , 
+0X74 , 0X44 , 0X44 , 0X74 , 
+0X74 , 0X44 , 0X44 , 0X77 , 
+0X74 , 0X44 , 0X47 , 0X44 , 
+0X74 , 0X44 , 0X47 , 0X47 , 
+0X74 , 0X44 , 0X47 , 0X74 , 
+0X74 , 0X44 , 0X47 , 0X77 , 
+0X74 , 0X44 , 0X74 , 0X44 , 
+0X74 , 0X44 , 0X74 , 0X47 , 
+0X74 , 0X44 , 0X74 , 0X74 , 
+0X74 , 0X44 , 0X74 , 0X77 , 
+0X74 , 0X44 , 0X77 , 0X44 , 
+0X74 , 0X44 , 0X77 , 0X47 , 
+0X74 , 0X44 , 0X77 , 0X74 , 
+0X74 , 0X44 , 0X77 , 0X77 , 
+0X74 , 0X47 , 0X44 , 0X44 , 
+0X74 , 0X47 , 0X44 , 0X47 , 
+0X74 , 0X47 , 0X44 , 0X74 , 
+0X74 , 0X47 , 0X44 , 0X77 , 
+0X74 , 0X47 , 0X47 , 0X44 , 
+0X74 , 0X47 , 0X47 , 0X47 , 
+0X74 , 0X47 , 0X47 , 0X74 , 
+0X74 , 0X47 , 0X47 , 0X77 , 
+0X74 , 0X47 , 0X74 , 0X44 , 
+0X74 , 0X47 , 0X74 , 0X47 , 
+0X74 , 0X47 , 0X74 , 0X74 , 
+0X74 , 0X47 , 0X74 , 0X77 , 
+0X74 , 0X47 , 0X77 , 0X44 , 
+0X74 , 0X47 , 0X77 , 0X47 , 
+0X74 , 0X47 , 0X77 , 0X74 , 
+0X74 , 0X47 , 0X77 , 0X77 , 
+0X74 , 0X74 , 0X44 , 0X44 , 
+0X74 , 0X74 , 0X44 , 0X47 , 
+0X74 , 0X74 , 0X44 , 0X74 , 
+0X74 , 0X74 , 0X44 , 0X77 , 
+0X74 , 0X74 , 0X47 , 0X44 , 
+0X74 , 0X74 , 0X47 , 0X47 , 
+0X74 , 0X74 , 0X47 , 0X74 , 
+0X74 , 0X74 , 0X47 , 0X77 , 
+0X74 , 0X74 , 0X74 , 0X44 , 
+0X74 , 0X74 , 0X74 , 0X47 , 
+0X74 , 0X74 , 0X74 , 0X74 , 
+0X74 , 0X74 , 0X74 , 0X77 , 
+0X74 , 0X74 , 0X77 , 0X44 , 
+0X74 , 0X74 , 0X77 , 0X47 , 
+0X74 , 0X74 , 0X77 , 0X74 , 
+0X74 , 0X74 , 0X77 , 0X77 , 
+0X74 , 0X77 , 0X44 , 0X44 , 
+0X74 , 0X77 , 0X44 , 0X47 , 
+0X74 , 0X77 , 0X44 , 0X74 , 
+0X74 , 0X77 , 0X44 , 0X77 , 
+0X74 , 0X77 , 0X47 , 0X44 , 
+0X74 , 0X77 , 0X47 , 0X47 , 
+0X74 , 0X77 , 0X47 , 0X74 , 
+0X74 , 0X77 , 0X47 , 0X77 , 
+0X74 , 0X77 , 0X74 , 0X44 , 
+0X74 , 0X77 , 0X74 , 0X47 , 
+0X74 , 0X77 , 0X74 , 0X74 , 
+0X74 , 0X77 , 0X74 , 0X77 , 
+0X74 , 0X77 , 0X77 , 0X44 , 
+0X74 , 0X77 , 0X77 , 0X47 , 
+0X74 , 0X77 , 0X77 , 0X74 , 
+0X74 , 0X77 , 0X77 , 0X77 , 
+0X77 , 0X44 , 0X44 , 0X44 , 
+0X77 , 0X44 , 0X44 , 0X47 , 
+0X77 , 0X44 , 0X44 , 0X74 , 
+0X77 , 0X44 , 0X44 , 0X77 , 
+0X77 , 0X44 , 0X47 , 0X44 , 
+0X77 , 0X44 , 0X47 , 0X47 , 
+0X77 , 0X44 , 0X47 , 0X74 , 
+0X77 , 0X44 , 0X47 , 0X77 , 
+0X77 , 0X44 , 0X74 , 0X44 , 
+0X77 , 0X44 , 0X74 , 0X47 , 
+0X77 , 0X44 , 0X74 , 0X74 , 
+0X77 , 0X44 , 0X74 , 0X77 , 
+0X77 , 0X44 , 0X77 , 0X44 , 
+0X77 , 0X44 , 0X77 , 0X47 , 
+0X77 , 0X44 , 0X77 , 0X74 , 
+0X77 , 0X44 , 0X77 , 0X77 , 
+0X77 , 0X47 , 0X44 , 0X44 , 
+0X77 , 0X47 , 0X44 , 0X47 , 
+0X77 , 0X47 , 0X44 , 0X74 , 
+0X77 , 0X47 , 0X44 , 0X77 , 
+0X77 , 0X47 , 0X47 , 0X44 , 
+0X77 , 0X47 , 0X47 , 0X47 , 
+0X77 , 0X47 , 0X47 , 0X74 , 
+0X77 , 0X47 , 0X47 , 0X77 , 
+0X77 , 0X47 , 0X74 , 0X44 , 
+0X77 , 0X47 , 0X74 , 0X47 , 
+0X77 , 0X47 , 0X74 , 0X74 , 
+0X77 , 0X47 , 0X74 , 0X77 , 
+0X77 , 0X47 , 0X77 , 0X44 , 
+0X77 , 0X47 , 0X77 , 0X47 , 
+0X77 , 0X47 , 0X77 , 0X74 , 
+0X77 , 0X47 , 0X77 , 0X77 , 
+0X77 , 0X74 , 0X44 , 0X44 , 
+0X77 , 0X74 , 0X44 , 0X47 , 
+0X77 , 0X74 , 0X44 , 0X74 , 
+0X77 , 0X74 , 0X44 , 0X77 , 
+0X77 , 0X74 , 0X47 , 0X44 , 
+0X77 , 0X74 , 0X47 , 0X47 , 
+0X77 , 0X74 , 0X47 , 0X74 , 
+0X77 , 0X74 , 0X47 , 0X77 , 
+0X77 , 0X74 , 0X74 , 0X44 , 
+0X77 , 0X74 , 0X74 , 0X47 , 
+0X77 , 0X74 , 0X74 , 0X74 , 
+0X77 , 0X74 , 0X74 , 0X77 , 
+0X77 , 0X74 , 0X77 , 0X44 , 
+0X77 , 0X74 , 0X77 , 0X47 , 
+0X77 , 0X74 , 0X77 , 0X74 , 
+0X77 , 0X74 , 0X77 , 0X77 , 
+0X77 , 0X77 , 0X44 , 0X44 , 
+0X77 , 0X77 , 0X44 , 0X47 , 
+0X77 , 0X77 , 0X44 , 0X74 , 
+0X77 , 0X77 , 0X44 , 0X77 , 
+0X77 , 0X77 , 0X47 , 0X44 , 
+0X77 , 0X77 , 0X47 , 0X47 , 
+0X77 , 0X77 , 0X47 , 0X74 , 
+0X77 , 0X77 , 0X47 , 0X77 , 
+0X77 , 0X77 , 0X74 , 0X44 , 
+0X77 , 0X77 , 0X74 , 0X47 , 
+0X77 , 0X77 , 0X74 , 0X74 , 
+0X77 , 0X77 , 0X74 , 0X77 , 
+0X77 , 0X77 , 0X77 , 0X44 , 
+0X77 , 0X77 , 0X77 , 0X47 , 
+0X77 , 0X77 , 0X77 , 0X74 , 
+0X77 , 0X77 , 0X77 , 0X77 ,
+};
+
+uint8_t ws_buffer[LED_BUFFER_LENGTH];
+
+void encode_byte( uint8_t data, int16_t buffer_index )
+{
+   int index = data * 4;
+   ws_buffer[buffer_index++ ] = leddata[index++];
+   ws_buffer[buffer_index++ ] = leddata[index++];
+   ws_buffer[buffer_index++ ] = leddata[index++];
+   ws_buffer[buffer_index++ ] = leddata[index++];
+}
+
+void generate_ws_buffer( uint8_t RData,uint8_t GData,uint8_t BData, int16_t led_no )
+{
+	//ws2812b
+  //G--R--B
+  //MSB first	
+  int offset = led_no * 12;
+  encode_byte( GData, offset );
+  encode_byte( RData, offset+4 );
+  encode_byte( BData, offset+8 );   
+}
+void Send_2812(void)
+ {   
+#if 1    
+    HAL_SPI_Transmit_DMA( &hspi1, ws_buffer, LED_BUFFER_LENGTH ); 
+    // wait until finished
+    while(__HAL_SPI_GET_FLAG(&hspi1, SPI_FLAG_BSY ));
+#else
+    HAL_SPI_Transmit( &hspi1, ws_buffer, LED_BUFFER_LENGTH, 300 );
+#endif
+ } 
+ 
+void setAllPixelColor(uint8_t r, uint8_t g, uint8_t b)
+{ 
+   int i;
+   for(i=0;i< LED_NO;i++) {
+      generate_ws_buffer( r, g, b, i );
+   }
+   Send_2812();
+}
+ void setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b)
+ {	 
+   generate_ws_buffer( r, g, b, n );
+   Send_2812();
+}
+/**
+ * initialize MOSI pin to LOW.  Without this, first time transmit for first LED might be wrong.
+ *
+ */
+void initLEDMOSI(void)
+{
+   uint8_t buffer0[2] = { 0, 0 };
+   HAL_SPI_Transmit(&hspi1, buffer0, 1, 100 );
+}
 
 /* USER CODE END 0 */
 
@@ -85,7 +391,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+ 
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -97,21 +403,37 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_SPI4_Init();
-  MX_TIM1_Init();
-  MX_USART3_UART_Init();
   MX_USB_DEVICE_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  initLEDMOSI();
   while (1)
   {
+    int i;
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    setAllPixelColor(0,0,0);
+    HAL_Delay(200);
+    for ( i = 0; i < LED_NO; i++) {
+      setPixelColor( i, 250, 0, 0 );
+      HAL_Delay(200);
+    }
+    // green
+    for ( i = 0; i < LED_NO; i++) {
+      setPixelColor( i, 0, 250, 0 );
+      HAL_Delay(200);
+    }
+    // blue
+    for ( i = 0; i < LED_NO; i++) {
+      setPixelColor( i, 0, 0, 250 );
+      HAL_Delay(200);
+    }
   }
   /* USER CODE END 3 */
 }
@@ -139,7 +461,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 8;
   RCC_OscInitStruct.PLL.PLLN = 384;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV8;
   RCC_OscInitStruct.PLL.PLLQ = 8;
   RCC_OscInitStruct.PLL.PLLR = 2;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -151,7 +473,7 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV2;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
@@ -168,148 +490,40 @@ void SystemClock_Config(void)
 }
 
 /**
-  * @brief SPI4 Initialization Function
+  * @brief SPI1 Initialization Function
   * @param None
   * @retval None
   */
-static void MX_SPI4_Init(void)
+static void MX_SPI1_Init(void)
 {
 
-  /* USER CODE BEGIN SPI4_Init 0 */
+  /* USER CODE BEGIN SPI1_Init 0 */
 
-  /* USER CODE END SPI4_Init 0 */
+  /* USER CODE END SPI1_Init 0 */
 
-  /* USER CODE BEGIN SPI4_Init 1 */
+  /* USER CODE BEGIN SPI1_Init 1 */
 
-  /* USER CODE END SPI4_Init 1 */
-  /* SPI4 parameter configuration*/
-  hspi4.Instance = SPI4;
-  hspi4.Init.Mode = SPI_MODE_MASTER;
-  hspi4.Init.Direction = SPI_DIRECTION_1LINE;
-  hspi4.Init.DataSize = SPI_DATASIZE_8BIT;
-  hspi4.Init.CLKPolarity = SPI_POLARITY_LOW;
-  hspi4.Init.CLKPhase = SPI_PHASE_1EDGE;
-  hspi4.Init.NSS = SPI_NSS_SOFT;
-  hspi4.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
-  hspi4.Init.FirstBit = SPI_FIRSTBIT_LSB;
-  hspi4.Init.TIMode = SPI_TIMODE_DISABLE;
-  hspi4.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-  hspi4.Init.CRCPolynomial = 10;
-  if (HAL_SPI_Init(&hspi4) != HAL_OK)
+  /* USER CODE END SPI1_Init 1 */
+  /* SPI1 parameter configuration*/
+  hspi1.Instance = SPI1;
+  hspi1.Init.Mode = SPI_MODE_MASTER;
+  hspi1.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi1.Init.NSS = SPI_NSS_SOFT;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_16;
+  hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi1.Init.CRCPolynomial = 10;
+  if (HAL_SPI_Init(&hspi1) != HAL_OK)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN SPI4_Init 2 */
+  /* USER CODE BEGIN SPI1_Init 2 */
 
-  /* USER CODE END SPI4_Init 2 */
-
-}
-
-/**
-  * @brief TIM1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM1_Init(void)
-{
-
-  /* USER CODE BEGIN TIM1_Init 0 */
-
-  /* USER CODE END TIM1_Init 0 */
-
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-  TIM_OC_InitTypeDef sConfigOC = {0};
-  TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
-
-  /* USER CODE BEGIN TIM1_Init 1 */
-
-  /* USER CODE END TIM1_Init 1 */
-  htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 0;
-  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 65535;
-  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim1.Init.RepetitionCounter = 0;
-  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 0;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
-  sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
-  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
-  sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
-  sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
-  sBreakDeadTimeConfig.DeadTime = 0;
-  sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
-  sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
-  sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
-  if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM1_Init 2 */
-
-  /* USER CODE END TIM1_Init 2 */
-  HAL_TIM_MspPostInit(&htim1);
-
-}
-
-/**
-  * @brief USART3 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_USART3_UART_Init(void)
-{
-
-  /* USER CODE BEGIN USART3_Init 0 */
-
-  /* USER CODE END USART3_Init 0 */
-
-  /* USER CODE BEGIN USART3_Init 1 */
-
-  /* USER CODE END USART3_Init 1 */
-  huart3.Instance = USART3;
-  huart3.Init.BaudRate = 115200;
-  huart3.Init.WordLength = UART_WORDLENGTH_8B;
-  huart3.Init.StopBits = UART_STOPBITS_1;
-  huart3.Init.Parity = UART_PARITY_NONE;
-  huart3.Init.Mode = UART_MODE_TX_RX;
-  huart3.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart3.Init.OverSampling = UART_OVERSAMPLING_16;
-  if (HAL_UART_Init(&huart3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN USART3_Init 2 */
-
-  /* USER CODE END USART3_Init 2 */
+  /* USER CODE END SPI1_Init 2 */
 
 }
 
@@ -323,13 +537,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOE_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOG_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, LD1_Pin|LD3_Pin|LD2_Pin, GPIO_PIN_RESET);
@@ -349,6 +562,14 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : STLK_RX_Pin STLK_TX_Pin */
+  GPIO_InitStruct.Pin = STLK_RX_Pin|STLK_TX_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  GPIO_InitStruct.Alternate = GPIO_AF7_USART3;
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
   /*Configure GPIO pin : USB_PowerSwitchOn_Pin */
   GPIO_InitStruct.Pin = USB_PowerSwitchOn_Pin;

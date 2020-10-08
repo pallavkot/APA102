@@ -1,0 +1,25 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+      {
+        "configFiles": [
+          "/usr/local/share/openocd/scripts/interface/stlink-v2.cfg",
+          "/usr/local/share/openocd/scripts/target/stm32f4x.cfg"
+        ],
+        "cwd": "${workspaceFolder}",
+        "device": "STM32F412ZG",
+        "executable": "${workspaceFolder}/build/neopixellightbar.elf",
+        "interface": "swd",
+        "name": "Debug",
+        "request": "launch",
+        "runToMain": true,
+        "servertype": "openocd",
+        "svdFile": "./STM32F41x.svd",
+        "type": "cortex-debug"
+      }
+    ]
+  }
