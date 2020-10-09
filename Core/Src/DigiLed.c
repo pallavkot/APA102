@@ -223,8 +223,8 @@ void DigiLed_update(uint8_t forceUpdate)
 		}
 
 		// add all LED packets of the frame
-		uint32_t SpiDataPacket = 0;
-		for (uint32_t led = 0; led < LED_FRAME_SIZE; led++)
+		uint16_t SpiDataPacket = 0;
+		for (uint16_t led = 0; led < LED_FRAME_SIZE; led++)
 		{
 			SpiSendFrame[LED_START_FRAME_SIZE + SpiDataPacket + 0] = _digitalLedframe[led].FieldsOut.CMD;		// Add INIT and GLOBAL to SPI send frame
 			SpiSendFrame[LED_START_FRAME_SIZE + SpiDataPacket + 1] = _digitalLedframe[led].FieldsOut.BLUE; 	// Add BLUE to SPI send frame

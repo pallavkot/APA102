@@ -8,7 +8,7 @@
 /* includes */
 #include <stdint.h>
 #include "main.h"
-
+#include "/Users/pallavkothari/Downloads/src/NeopixelLightbar/Core/Inc/spi.h"
 
 /* defines */
 #define 	LED_FRAME_SIZE   		120		///< \define number of LEDs in the chain
@@ -73,10 +73,5 @@ void DigiLed_setLedOn(uint8_t led);
 void DigiLed_update(uint8_t forceUpdate);
 uint8_t DigiLed_getFrameSize(void);
 uint8_t DigiLed_TestPosition(uint8_t led);
-
-
-
-
-
 
 #endif /* DIGITALLED_H_ */

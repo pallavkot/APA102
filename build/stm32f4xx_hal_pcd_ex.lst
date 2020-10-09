@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
   27:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c **** /** @addtogroup STM32F4xx_HAL_Driver
   28:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c ****   * @{
   29:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c ****   */
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 2
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 2
 
 
   30:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
   73:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c ****   uint8_t i;
   41              		.loc 1 73 3 is_stmt 1 view .LVU2
   74:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c ****   uint32_t Tx_Offset;
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 3
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 3
 
 
   42              		.loc 1 74 3 view .LVU3
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
   75              		.loc 1 95 28 is_stmt 0 discriminator 1 view .LVU19
   76 001a 691E     		subs	r1, r5, #1
   77              		.loc 1 95 5 discriminator 1 view .LVU20
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 4
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 4
 
 
   78 001c 8B42     		cmp	r3, r1
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
  118              	.LFE130:
  120              		.section	.text.HAL_PCDEx_SetRxFiFo,"ax",%progbits
  121              		.align	1
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 5
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 5
 
 
  122              		.global	HAL_PCDEx_SetRxFiFo
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
  124:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c ****   */
  125:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c **** HAL_StatusTypeDef HAL_PCDEx_ActivateLPM(PCD_HandleTypeDef *hpcd)
  126:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c **** {
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 6
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 6
 
 
  161              		.loc 1 126 1 is_stmt 1 view -0
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
  207              		.fpu fpv4-sp-d16
  209              	HAL_PCDEx_DeActivateLPM:
  210              	.LVL17:
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 7
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 7
 
 
  211              	.LFB133:
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
  250              		.global	HAL_PCDEx_ActivateBCD
  251              		.syntax unified
  252              		.thumb
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 8
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 8
 
 
  253              		.thumb_func
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
  201:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c ****   HAL_Delay(50U);
  202:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c **** 
  203:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c ****   if ((USBx->GCCFG & USB_OTG_GCCFG_PDET) == 0U)
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 9
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 9
 
 
  204:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c ****   {
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
  259              		.loc 1 257 1 is_stmt 1 view -0
  260              		.cfi_startproc
  261              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 10
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 10
 
 
  262              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
  301              	.LFE135:
  303              		.section	.text.HAL_PCDEx_DeActivateBCD,"ax",%progbits
  304              		.align	1
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 11
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 11
 
 
  305              		.global	HAL_PCDEx_DeActivateBCD
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
  343              	.LVL27:
  344              		.loc 1 289 33 view .LVU99
  345 001e C2F80004 		str	r0, [r2, #1024]
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 12
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 12
 
 
  290:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c **** 
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
  381              		.fpu fpv4-sp-d16
  383              	HAL_PCDEx_BCD_Callback:
  384              	.LVL29:
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 13
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 13
 
 
  385              	.LFB138:
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
  161:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c ****   uint32_t tickstart = HAL_GetTick();
  422              		.loc 1 161 3 is_stmt 1 view .LVU112
  161:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c ****   uint32_t tickstart = HAL_GetTick();
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 14
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 14
 
 
  423              		.loc 1 161 26 is_stmt 0 view .LVU113
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
  462 0030 23E0     		b	.L15
  463              	.L24:
  184:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c **** 
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 15
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 15
 
 
  464              		.loc 1 184 3 view .LVU129
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
  242:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c **** 
  505              		.loc 1 242 3 view .LVU143
  242:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c **** 
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 16
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 16
 
 
  506              		.loc 1 242 9 is_stmt 0 view .LVU144
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
  548              		.loc 1 221 8 view .LVU156
  549 00a4 13F0040F 		tst	r3, #4
  550 00a8 04D0     		beq	.L22
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 17
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 17
 
 
  227:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c **** #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
@@ -989,29 +989,29 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 1
  575              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h"
  576              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h"
  577              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s 			page 18
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f4xx_hal_pcd_ex.c
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:18     .text.HAL_PCDEx_SetTxFiFo:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:26     .text.HAL_PCDEx_SetTxFiFo:0000000000000000 HAL_PCDEx_SetTxFiFo
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:121    .text.HAL_PCDEx_SetRxFiFo:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:128    .text.HAL_PCDEx_SetRxFiFo:0000000000000000 HAL_PCDEx_SetRxFiFo
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:151    .text.HAL_PCDEx_ActivateLPM:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:158    .text.HAL_PCDEx_ActivateLPM:0000000000000000 HAL_PCDEx_ActivateLPM
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:202    .text.HAL_PCDEx_DeActivateLPM:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:209    .text.HAL_PCDEx_DeActivateLPM:0000000000000000 HAL_PCDEx_DeActivateLPM
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:249    .text.HAL_PCDEx_ActivateBCD:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:256    .text.HAL_PCDEx_ActivateBCD:0000000000000000 HAL_PCDEx_ActivateBCD
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:304    .text.HAL_PCDEx_DeActivateBCD:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:311    .text.HAL_PCDEx_DeActivateBCD:0000000000000000 HAL_PCDEx_DeActivateBCD
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:353    .text.HAL_PCDEx_LPM_Callback:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:360    .text.HAL_PCDEx_LPM_Callback:0000000000000000 HAL_PCDEx_LPM_Callback
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:376    .text.HAL_PCDEx_BCD_Callback:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:383    .text.HAL_PCDEx_BCD_Callback:0000000000000000 HAL_PCDEx_BCD_Callback
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:399    .text.HAL_PCDEx_BCD_VBUSDetect:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuBzyc1.s:406    .text.HAL_PCDEx_BCD_VBUSDetect:0000000000000000 HAL_PCDEx_BCD_VBUSDetect
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:18     .text.HAL_PCDEx_SetTxFiFo:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:26     .text.HAL_PCDEx_SetTxFiFo:0000000000000000 HAL_PCDEx_SetTxFiFo
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:121    .text.HAL_PCDEx_SetRxFiFo:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:128    .text.HAL_PCDEx_SetRxFiFo:0000000000000000 HAL_PCDEx_SetRxFiFo
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:151    .text.HAL_PCDEx_ActivateLPM:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:158    .text.HAL_PCDEx_ActivateLPM:0000000000000000 HAL_PCDEx_ActivateLPM
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:202    .text.HAL_PCDEx_DeActivateLPM:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:209    .text.HAL_PCDEx_DeActivateLPM:0000000000000000 HAL_PCDEx_DeActivateLPM
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:249    .text.HAL_PCDEx_ActivateBCD:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:256    .text.HAL_PCDEx_ActivateBCD:0000000000000000 HAL_PCDEx_ActivateBCD
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:304    .text.HAL_PCDEx_DeActivateBCD:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:311    .text.HAL_PCDEx_DeActivateBCD:0000000000000000 HAL_PCDEx_DeActivateBCD
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:353    .text.HAL_PCDEx_LPM_Callback:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:360    .text.HAL_PCDEx_LPM_Callback:0000000000000000 HAL_PCDEx_LPM_Callback
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:376    .text.HAL_PCDEx_BCD_Callback:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:383    .text.HAL_PCDEx_BCD_Callback:0000000000000000 HAL_PCDEx_BCD_Callback
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:399    .text.HAL_PCDEx_BCD_VBUSDetect:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//cc5RiA4Z.s:406    .text.HAL_PCDEx_BCD_VBUSDetect:0000000000000000 HAL_PCDEx_BCD_VBUSDetect
 
 UNDEFINED SYMBOLS
 HAL_GetTick
