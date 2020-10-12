@@ -18,7 +18,7 @@
         "request": "launch",
         "runToMain": true,
         "servertype": "openocd",
-        "svdFile": "./STM32F41x.svd",
+        "svdFile": "./STM32F412.svd",
         "type": "cortex-debug"
       }
     ]

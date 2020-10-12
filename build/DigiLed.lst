@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
   27:Core/Src/DigiLed.c ****  * 		hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   28:Core/Src/DigiLed.c ****  * 		hspi1.Init.NSS = SPI_NSS_SOFT;
   29:Core/Src/DigiLed.c ****  * 		hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_32;
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 2
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 2
 
 
   30:Core/Src/DigiLed.c ****  * 		hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
@@ -95,7 +95,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
   61:Core/Src/DigiLed.c **** 
   62:Core/Src/DigiLed.c **** 	for (int led = 0; led < LED_FRAME_SIZE; led++)
   63:Core/Src/DigiLed.c **** 	{
-  64:Core/Src/DigiLed.c **** 		_digitalLedframe[led].FieldsIn.INIT = 0x07; // Set MSB first 3 bits to identify start of LED pack
+  64:Core/Src/DigiLed.c **** 		_digitalLedframe[led].FieldsIn.INIT = 0x7; // Set MSB first 3 bits to identify start of LED packe
   65:Core/Src/DigiLed.c **** 		_digitalLedframe[led].FieldsIn.GLOBAL = 0x00; // Switch off LED global
   66:Core/Src/DigiLed.c **** 		_digitalLedframe[led].FieldsIn.BLUE = 0x00;
   67:Core/Src/DigiLed.c **** 		_digitalLedframe[led].FieldsIn.GREEN = 0x00;
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
   84:Core/Src/DigiLed.c **** 	if (DigiLed_TestPosition(led) == RANGE_OK)
   85:Core/Src/DigiLed.c **** 	{
   86:Core/Src/DigiLed.c **** 		_digitalLedframe[led].FieldsIn.INIT = 0x7; // Set MSB first 3 bits to identify start of LED packe
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 3
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 3
 
 
   87:Core/Src/DigiLed.c **** 		_digitalLedframe[led].FieldsIn.GLOBAL = 0x1F; // Set led at maximum illumination
@@ -154,7 +154,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  117:Core/Src/DigiLed.c ****  * @param led position of the led in the string
  118:Core/Src/DigiLed.c ****  * @param rgb color of led in RGB color scheme
  119:Core/Src/DigiLed.c ****  */
- 120:Core/Src/DigiLed.c **** void DigiLed_setRGB(uint8_t led, uint32_t rgb)
+ 120:Core/Src/DigiLed.c **** void DigiLed_setRGB(uint8_t led, int32_t rgb)
  121:Core/Src/DigiLed.c **** {
   30              		.loc 1 121 1 view -0
   31              		.cfi_startproc
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
   47 000a DC70     		strb	r4, [r3, #3]
  124:Core/Src/DigiLed.c **** 	_digitalLedframe[led].FieldsIn.BLUE = (uint8_t)(rgb);
   48              		.loc 1 124 2 is_stmt 1 view .LVU6
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 4
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 4
 
 
   49              		.loc 1 124 38 is_stmt 0 view .LVU7
@@ -236,9 +236,9 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  136:Core/Src/DigiLed.c ****  * Colors can be set using defines from "APA102_colors.h"
  137:Core/Src/DigiLed.c ****  * @param rgb color of led in RGB color scheme
  138:Core/Src/DigiLed.c ****  */
- 139:Core/Src/DigiLed.c **** void DigiLed_setAllRGB(uint32_t rgb)
+ 139:Core/Src/DigiLed.c **** void DigiLed_setAllRGB(int32_t rgb)
  140:Core/Src/DigiLed.c **** {
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 5
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 5
 
 
   92              		.loc 1 140 1 is_stmt 1 view -0
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  136              		.loc 1 146 1 view .LVU31
  137 001c 38BD     		pop	{r3, r4, r5, pc}
  138              	.LVL7:
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 6
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 6
 
 
  139              	.L11:
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  167 0000 0022     		movs	r2, #0
  168              	.LVL9:
  169              	.L13:
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 7
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 7
 
 
  170              		.loc 1 174 20 is_stmt 1 discriminator 1 view .LVU37
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  217              	.LFB139:
  180:Core/Src/DigiLed.c **** 
  181:Core/Src/DigiLed.c **** 
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 8
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 8
 
 
  182:Core/Src/DigiLed.c **** /**
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  236              		.loc 1 217 4 view .LVU53
  237 0006 0343     		orrs	r3, r0, r3
  238 0008 22D1     		bne	.L26
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 9
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 9
 
 
  239              	.LVL13:
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  220:Core/Src/DigiLed.c **** 		{
  258              		.loc 1 220 45 is_stmt 0 discriminator 3 view .LVU60
  259 0018 0133     		adds	r3, r3, #1
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 10
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 10
 
 
  260              	.LVL15:
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  231:Core/Src/DigiLed.c **** 			SpiSendFrame[LED_START_FRAME_SIZE + SpiDataPacket + 3] = _digitalLedframe[led].FieldsOut.RED;		/
  299              		.loc 1 231 4 is_stmt 1 discriminator 3 view .LVU76
  231:Core/Src/DigiLed.c **** 			SpiSendFrame[LED_START_FRAME_SIZE + SpiDataPacket + 3] = _digitalLedframe[led].FieldsOut.RED;		/
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 11
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 11
 
 
  300              		.loc 1 231 54 is_stmt 0 discriminator 3 view .LVU77
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  339              	.LBB9:
  238:Core/Src/DigiLed.c **** 		{
  340              		.loc 1 238 11 view .LVU93
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 12
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 12
 
 
  341 0054 0023     		movs	r3, #0
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  386              		.section	.text.DigiLed_init,"ax",%progbits
  387              		.align	1
  388              		.global	DigiLed_init
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 13
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 13
 
 
  389              		.syntax unified
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  431 0014 00EB8302 		add	r2, r0, r3, lsl #2
  432 0018 D178     		ldrb	r1, [r2, #3]	@ zero_extendqisi2
   65:Core/Src/DigiLed.c **** 		_digitalLedframe[led].FieldsIn.BLUE = 0x00;
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 14
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 14
 
 
  433              		.loc 1 65 3 is_stmt 1 discriminator 3 view .LVU117
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  475              		.syntax unified
  476              		.thumb
  477              		.thumb_func
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 15
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 15
 
 
  478              		.fpu fpv4-sp-d16
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  514 0002 01D9     		bls	.L41
  269:Core/Src/DigiLed.c **** 	uint8_t returnValue = OUT_OF_RANGE;
  515              		.loc 1 269 10 view .LVU138
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 16
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 16
 
 
  516 0004 0120     		movs	r0, #1
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  562 000a FFF7FEFF 		bl	DigiLed_TestPosition
  563              	.LVL39:
   84:Core/Src/DigiLed.c **** 	if (DigiLed_TestPosition(led) == RANGE_OK)
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 17
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 17
 
 
  564              		.loc 1 84 5 view .LVU147
@@ -1018,7 +1018,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  607              	DigiLed_setAllColor:
  608              	.LVL40:
  609              	.LFB132:
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 18
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 18
 
 
  103:Core/Src/DigiLed.c **** {
@@ -1078,7 +1078,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  104:Core/Src/DigiLed.c **** 	for (int led = 0; led < LED_FRAME_SIZE; led++)
  653              		.loc 1 104 45 discriminator 3 view .LVU172
  654              	.LBE11:
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 19
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 19
 
 
  108:Core/Src/DigiLed.c **** }
@@ -1138,7 +1138,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  162:Core/Src/DigiLed.c **** 	_frameModified = TRUE;
  701              		.loc 1 162 17 is_stmt 0 view .LVU183
  702 001a 034B     		ldr	r3, .L55+4
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 20
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 20
 
 
  703 001c 0122     		movs	r2, #1
@@ -1198,7 +1198,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  192:Core/Src/DigiLed.c **** 	_frameModified = TRUE;
  751              		.loc 1 192 2 is_stmt 1 view .LVU192
  192:Core/Src/DigiLed.c **** 	_frameModified = TRUE;
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 21
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 21
 
 
  752              		.loc 1 192 17 is_stmt 0 view .LVU193
@@ -1258,7 +1258,7 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  800 0016 C370     		strb	r3, [r0, #3]
  801              	.L63:
  207:Core/Src/DigiLed.c **** 	_frameModified = TRUE;
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 22
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 22
 
 
  802              		.loc 1 207 2 is_stmt 1 view .LVU202
@@ -1294,48 +1294,48 @@ ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 1
  831              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
  832              		.file 11 "/Users/pallavkothari/Downloads/src/NeopixelLightbar/Core/Inc/spi.h"
  833              		.file 12 "Core/Inc/DigiLed.h"
-ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s 			page 23
+ARM GAS  /var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s 			page 23
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 DigiLed.c
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:18     .text.DigiLed_setRGB:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:26     .text.DigiLed_setRGB:0000000000000000 DigiLed_setRGB
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:76     .text.DigiLed_setRGB:0000000000000028 $d
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:18     .text.DigiLed_setRGB:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:26     .text.DigiLed_setRGB:0000000000000000 DigiLed_setRGB
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:76     .text.DigiLed_setRGB:0000000000000028 $d
                             *COM*:00000000000001e0 _digitalLedframe
                             *COM*:0000000000000001 _frameModified
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:82     .text.DigiLed_setAllRGB:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:89     .text.DigiLed_setAllRGB:0000000000000000 DigiLed_setAllRGB
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:143    .text.DigiLed_setAllRGB:0000000000000020 $d
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:148    .text.DigiLed_setAllIllumination:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:155    .text.DigiLed_setAllIllumination:0000000000000000 DigiLed_setAllIllumination
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:202    .text.DigiLed_setAllIllumination:0000000000000020 $d
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:208    .text.DigiLed_update:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:215    .text.DigiLed_update:0000000000000000 DigiLed_update
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:378    .text.DigiLed_update:000000000000007c $d
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:82     .text.DigiLed_setAllRGB:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:89     .text.DigiLed_setAllRGB:0000000000000000 DigiLed_setAllRGB
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:143    .text.DigiLed_setAllRGB:0000000000000020 $d
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:148    .text.DigiLed_setAllIllumination:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:155    .text.DigiLed_setAllIllumination:0000000000000000 DigiLed_setAllIllumination
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:202    .text.DigiLed_setAllIllumination:0000000000000020 $d
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:208    .text.DigiLed_update:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:215    .text.DigiLed_update:0000000000000000 DigiLed_update
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:378    .text.DigiLed_update:000000000000007c $d
                             *COM*:00000000000001e8 SpiSendFrame
                             *COM*:0000000000000004 _spiHandler
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:387    .text.DigiLed_init:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:394    .text.DigiLed_init:0000000000000000 DigiLed_init
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:466    .text.DigiLed_init:000000000000003c $d
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:473    .text.DigiLed_getFrameSize:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:480    .text.DigiLed_getFrameSize:0000000000000000 DigiLed_getFrameSize
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:495    .text.DigiLed_TestPosition:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:502    .text.DigiLed_TestPosition:0000000000000000 DigiLed_TestPosition
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:532    .text.DigiLed_setColor:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:539    .text.DigiLed_setColor:0000000000000000 DigiLed_setColor
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:594    .text.DigiLed_setColor:000000000000002c $d
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:600    .text.DigiLed_setAllColor:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:607    .text.DigiLed_setAllColor:0000000000000000 DigiLed_setAllColor
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:662    .text.DigiLed_setLedIllumination:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:669    .text.DigiLed_setLedIllumination:0000000000000000 DigiLed_setLedIllumination
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:710    .text.DigiLed_setLedIllumination:0000000000000024 $d
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:716    .text.DigiLed_setLedOff:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:723    .text.DigiLed_setLedOff:0000000000000000 DigiLed_setLedOff
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:761    .text.DigiLed_setLedOff:0000000000000020 $d
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:767    .text.DigiLed_setLedOn:0000000000000000 $t
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:774    .text.DigiLed_setLedOn:0000000000000000 DigiLed_setLedOn
-/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccHW6Hri.s:812    .text.DigiLed_setLedOn:0000000000000020 $d
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:387    .text.DigiLed_init:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:394    .text.DigiLed_init:0000000000000000 DigiLed_init
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:466    .text.DigiLed_init:000000000000003c $d
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:473    .text.DigiLed_getFrameSize:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:480    .text.DigiLed_getFrameSize:0000000000000000 DigiLed_getFrameSize
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:495    .text.DigiLed_TestPosition:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:502    .text.DigiLed_TestPosition:0000000000000000 DigiLed_TestPosition
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:532    .text.DigiLed_setColor:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:539    .text.DigiLed_setColor:0000000000000000 DigiLed_setColor
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:594    .text.DigiLed_setColor:000000000000002c $d
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:600    .text.DigiLed_setAllColor:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:607    .text.DigiLed_setAllColor:0000000000000000 DigiLed_setAllColor
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:662    .text.DigiLed_setLedIllumination:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:669    .text.DigiLed_setLedIllumination:0000000000000000 DigiLed_setLedIllumination
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:710    .text.DigiLed_setLedIllumination:0000000000000024 $d
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:716    .text.DigiLed_setLedOff:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:723    .text.DigiLed_setLedOff:0000000000000000 DigiLed_setLedOff
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:761    .text.DigiLed_setLedOff:0000000000000020 $d
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:767    .text.DigiLed_setLedOn:0000000000000000 $t
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:774    .text.DigiLed_setLedOn:0000000000000000 DigiLed_setLedOn
+/var/folders/s1/w1vq8g2x1hl_3mycxvqn0m9w0000gn/T//ccuLZ1Si.s:812    .text.DigiLed_setLedOn:0000000000000020 $d
 
 UNDEFINED SYMBOLS
 HAL_SPI_Transmit

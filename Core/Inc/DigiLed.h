@@ -64,8 +64,8 @@ union
 void DigiLed_init(SPI_HandleTypeDef *hspi);
 void DigiLed_setColor(uint8_t led, uint8_t red, uint8_t green, uint8_t blue);
 void DigiLed_setAllColor(uint8_t red, uint8_t green, uint8_t blue);
-void DigiLed_setRGB(uint8_t led, uint32_t rgb);
-void DigiLed_setAllRGB(uint32_t rgb);
+void DigiLed_setRGB(uint8_t led, int32_t rgb);
+void DigiLed_setAllRGB(int32_t rgb);
 void DigiLed_setLedIllumination(uint8_t led, uint8_t illumination);
 void DigiLed_setAllIllumination(uint8_t illumination);
 void DigiLed_setLedOff(uint8_t led);

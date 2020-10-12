@@ -61,7 +61,7 @@ void DigiLed_init(SPI_HandleTypeDef *hspi)
 
 	for (int led = 0; led < LED_FRAME_SIZE; led++)
 	{
-		_digitalLedframe[led].FieldsIn.INIT = 0x07; // Set MSB first 3 bits to identify start of LED packet
+		_digitalLedframe[led].FieldsIn.INIT = 0x7; // Set MSB first 3 bits to identify start of LED packet
 		_digitalLedframe[led].FieldsIn.GLOBAL = 0x00; // Switch off LED global
 		_digitalLedframe[led].FieldsIn.BLUE = 0x00;
 		_digitalLedframe[led].FieldsIn.GREEN = 0x00;
@@ -117,7 +117,7 @@ void DigiLed_setAllColor(uint8_t red, uint8_t green, uint8_t blue)
  * @param led position of the led in the string
  * @param rgb color of led in RGB color scheme
  */
-void DigiLed_setRGB(uint8_t led, uint32_t rgb)
+void DigiLed_setRGB(uint8_t led, int32_t rgb)
 {
 	_digitalLedframe[led].FieldsIn.INIT = 0x7;
 	_digitalLedframe[led].FieldsIn.GLOBAL = 0x1F;
@@ -136,7 +136,7 @@ void DigiLed_setRGB(uint8_t led, uint32_t rgb)
  * Colors can be set using defines from "APA102_colors.h"
  * @param rgb color of led in RGB color scheme
  */
-void DigiLed_setAllRGB(uint32_t rgb)
+void DigiLed_setAllRGB(int32_t rgb)
 {
 	for (int led = 0; led < LED_FRAME_SIZE; led++)
 	{

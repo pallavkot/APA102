@@ -102,9 +102,12 @@ int main(void)
   DigiLed_init(&hspi1);
   while (1)
   {
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7 ,GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5 ,GPIO_PIN_SET);
-    DigiLed_setAllColor(30,30,30);
+    // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7 ,GPIO_PIN_SET);
+    // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5 ,GPIO_PIN_SET);
+    // for(int i=0; i<144; i++){
+    //   DigiLed_setColor(i,30,0,0);
+    // }
+    DigiLed_setAllColor(30,0,0);
     // HAL_SPI_Transmit( &hspi1, ws_buffer, LED_BUFFER_LENGTH, 300);
     /* USER CODE END WHILE */
 
