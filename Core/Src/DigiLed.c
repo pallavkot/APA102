@@ -61,7 +61,7 @@ void DigiLed_init(SPI_HandleTypeDef *hspi)
 
 	for (int led = 0; led < LED_FRAME_SIZE; led++)
 	{
-		_digitalLedframe[led].FieldsIn.INIT = 0x7; // Set MSB first 3 bits to identify start of LED packet
+		_digitalLedframe[led].FieldsIn.INIT = 0x00; // Set MSB first 3 bits to identify start of LED packet
 		_digitalLedframe[led].FieldsIn.GLOBAL = 0x00; // Switch off LED global
 		_digitalLedframe[led].FieldsIn.BLUE = 0x00;
 		_digitalLedframe[led].FieldsIn.GREEN = 0x00;
@@ -83,7 +83,7 @@ void DigiLed_setColor(uint8_t led, uint8_t red, uint8_t green, uint8_t blue)
 {
 	if (DigiLed_TestPosition(led) == RANGE_OK)
 	{
-		_digitalLedframe[led].FieldsIn.INIT = 0x7; // Set MSB first 3 bits to identify start of LED packet
+		_digitalLedframe[led].FieldsIn.INIT = 0x00; // Set MSB first 3 bits to identify start of LED packet
 		_digitalLedframe[led].FieldsIn.GLOBAL = 0x1F; // Set led at maximum illumination
 		_digitalLedframe[led].FieldsIn.BLUE = blue;
 		_digitalLedframe[led].FieldsIn.GREEN = green;
@@ -119,7 +119,7 @@ void DigiLed_setAllColor(uint8_t red, uint8_t green, uint8_t blue)
  */
 void DigiLed_setRGB(uint8_t led, int32_t rgb)
 {
-	_digitalLedframe[led].FieldsIn.INIT = 0x7;
+	_digitalLedframe[led].FieldsIn.INIT = 0x00;
 	_digitalLedframe[led].FieldsIn.GLOBAL = 0x1F;
 	_digitalLedframe[led].FieldsIn.BLUE = (uint8_t)(rgb);
 	_digitalLedframe[led].FieldsIn.GREEN = (uint8_t)(rgb >> 8);

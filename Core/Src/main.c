@@ -26,7 +26,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-// #define LED_NO 120
 #include "DigiLed.h"
 
 /* USER CODE END Includes */
@@ -38,6 +37,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -92,23 +92,38 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_USB_DEVICE_Init();
-  MX_SPI1_Init();
+  MX_SPI3_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  DigiLed_init(&hspi1);
+  DigiLed_init(&hspi3);
+
   while (1)
   {
-    // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7 ,GPIO_PIN_SET);
-    // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5 ,GPIO_PIN_SET);
-    // for(int i=0; i<144; i++){
-    //   DigiLed_setColor(i,30,0,0);
-    // }
-    DigiLed_setAllColor(30,0,0);
-    // HAL_SPI_Transmit( &hspi1, ws_buffer, LED_BUFFER_LENGTH, 300);
+    // HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
+    // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_RESET);
+
+    for(int i=0; i<120; i++){
+      DigiLed_setColor(i,250,0,0);
+      DigiLed_update(TRUE);
+      HAL_Delay(10);
+    }
+    for(int i=0; i<120; i++){
+      DigiLed_setColor(i,0,250,0);
+      DigiLed_update(TRUE);
+      HAL_Delay(10);
+    }
+    for(int i=0; i<120; i++){
+      DigiLed_setColor(i,0,0,250);
+      DigiLed_update(TRUE);
+      HAL_Delay(10);
+    }
+
+    // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET);
+    // HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -139,7 +154,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 8;
   RCC_OscInitStruct.PLL.PLLN = 384;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV8;
   RCC_OscInitStruct.PLL.PLLQ = 8;
   RCC_OscInitStruct.PLL.PLLR = 2;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -152,10 +167,10 @@ void SystemClock_Config(void)
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
   {
     Error_Handler();
   }
