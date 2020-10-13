@@ -103,27 +103,31 @@ int main(void)
 
   while (1)
   {
-    // HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
-    // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_RESET);
-
+    //Cycling through for different colors. All color range(0-255)
+    //Red
     for(int i=0; i<120; i++){
       DigiLed_setColor(i,250,0,0);
       DigiLed_update(TRUE);
       HAL_Delay(10);
     }
+    //Green
     for(int i=0; i<120; i++){
       DigiLed_setColor(i,0,250,0);
       DigiLed_update(TRUE);
       HAL_Delay(10);
     }
+    //Blue
     for(int i=0; i<120; i++){
       DigiLed_setColor(i,0,0,250);
       DigiLed_update(TRUE);
       HAL_Delay(10);
     }
-
-    // HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET);
-    // HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
+    //White
+    for(int i=0; i<120; i++){
+      DigiLed_setColor(i,250,250,250);
+      DigiLed_update(TRUE);
+      HAL_Delay(10);
+    }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

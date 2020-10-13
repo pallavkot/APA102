@@ -1,17 +1,16 @@
 /**
  * @brief		This library enables the use of the popular APA102 addressable
- * 				RGB LEDs with the familiar STM32 HAL library.
+ * 				RGB LEDs with the familiar STM32 HAL library running in VSCode.
+ * @board 		NUCLEO-F412ZG
  * @file		digitalled.c
- * @date		13.07.2019
+ * @date		10.13.2020
  * @version		0.1.0
- * @author		Hans Achterbahn
- * @url			https://github.com/HansAchterbahn/APA102-on-STM32
- * @license		CC-BY-SA 4.0
+ * @author		Pallav Kothari
+ * @url			https://github.com/pallavkot/APA102.git
  *
  *
- * @forkAuthor		Remko Welling
- * @forkE-Mail		remko@rfsee.nl
- * @forkUrl			https://github.com/pe1mew/APA102-on-STM32
+ * @forkAuthor		Hans Achterbahn
+ * @forkurl			https://github.com/HansAchterbahn/APA102-on-STM32
  * @forkLicense		CC-BY-SA 4.0
  *
  *
@@ -19,23 +18,23 @@
  *
  * 		SPI Settings
  * 		------------
- * 		hspi1.Instance = SPI1;
- * 		hspi1.Init.Mode = SPI_MODE_MASTER;
- * 		hspi1.Init.Direction = SPI_DIRECTION_1LINE;
- * 		hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
- * 		hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
- * 		hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
- * 		hspi1.Init.NSS = SPI_NSS_SOFT;
- * 		hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_32;
- * 		hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
- * 		hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
- * 		hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
- *	 	hspi1.Init.CRCPolynomial = 7;
- * 		hspi1.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
- * 		hspi1.Init.NSSPMode = SPI_NSS_PULSE_DISABLE;
+ *		hspi3.Instance = SPI3;
+ *		hspi3.Init.Mode = SPI_MODE_MASTER;
+ *		hspi3.Init.Direction = SPI_DIRECTION_2LINES;
+ *		hspi3.Init.DataSize = SPI_DATASIZE_8BIT;
+ *		hspi3.Init.CLKPolarity = SPI_POLARITY_LOW;
+ *		hspi3.Init.CLKPhase = SPI_PHASE_1EDGE;
+ *		hspi3.Init.NSS = SPI_NSS_SOFT;
+ *		hspi3.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;
+ *		hspi3.Init.FirstBit = SPI_FIRSTBIT_MSB;
+ *		hspi3.Init.TIMode = SPI_TIMODE_DISABLE;
+ *		hspi3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+ *		hspi3.Init.CRCPolynomial = 10;
+ *		if (HAL_SPI_Init(&hspi3) != HAL_OK)
+ *		{
+ *			Error_Handler();
+ *		}
  *
- */
-
 /* includes */
 #include "DigiLed.h"
 #include "stdint.h"
